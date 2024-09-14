@@ -7,8 +7,9 @@ public class JogadorComum extends Jogador{
 		this.casa = 0;
 	}
 
-	public void JogarDado() {
-		
+	public void JogarDados() {
+		dado[0].JogarDado();
+		dado[1].JogarDado();
 	}
 	
 	
