@@ -22,7 +22,7 @@ public class Dado {
 		if (face > 0 && face < 7) {
 			this.face = face;
 		}else {
-			throw new InvalidFaceException("Face must be beetween [1,6]");
+			throw new InvalidFaceException();
 		}
 	}
 }

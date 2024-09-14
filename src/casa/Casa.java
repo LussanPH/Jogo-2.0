@@ -1,5 +1,9 @@
 package casa;
+import jogadores.*;
 
-public class Casa {
-
+public abstract class Casa {
+	public int numero;
+	
+	public abstract void aplicarRegra(Jogador jogador);
+	
 }

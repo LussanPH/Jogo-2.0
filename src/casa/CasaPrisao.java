@@ -1,4 +1,5 @@
 package casa;
+import jogadores.*;
 
 public class CasaPrisao extends Casa{
 
@@ -8,7 +9,7 @@ public class CasaPrisao extends Casa{
 	}
 
 	@Override
-	public void aplicarRegra() {
+	public void aplicarRegra(Jogador jogador) {
 		// TODO Auto-generated method stub
 		
 	}

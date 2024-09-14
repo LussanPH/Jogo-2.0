@@ -8,6 +8,11 @@ public class JogadorSortudo extends Jogador{
 		this.cor = cor;
 		this.casa = 0;
 	}
+	public JogadorSortudo(String cor, int casa, int pontuacao) {
+		this.cor = cor;
+		this.casa = casa;
+		this.pontuacao = pontuacao;
+	}
 	
 	private int soma(Dado[] dado) {
 		int soma = dado[0].getFace() + dado[1].getFace();
