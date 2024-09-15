@@ -10,12 +10,6 @@ public class JogadorAzarado extends Jogador{
 		this.casa = 0;
 	}
 	
-	public JogadorAzarado(String cor, int casa, int pontuacao) {
-		this.cor = cor;
-		this.casa = casa;
-		this.pontuacao = pontuacao;
-	}
-	
 	private int soma(Dado[] dado) {
 		int soma = dado[0].getFace() + dado[1].getFace();
 		return soma;

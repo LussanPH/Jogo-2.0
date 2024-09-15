@@ -8,7 +8,7 @@ public class CasaSimples extends Casa{
 	}
 	
 	public Jogador aplicarRegra(Jogador jogador) {
-		jogador.setPontuacao(jogador.getPontuacao() + 1);
+		jogador.setMoedas(jogador.getMoedas() + 1);
 		return jogador;
 	}
 	
