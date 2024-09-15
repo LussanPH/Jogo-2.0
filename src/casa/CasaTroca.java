@@ -1,5 +1,5 @@
 package casa;
-
+import jogadores.Jogador;
 public class CasaTroca extends Casa{
 
 	public CasaTroca(int numero) {
@@ -8,8 +8,9 @@ public class CasaTroca extends Casa{
 	}
 
 	@Override
-	public void aplicarRegra() {
-		// TODO Auto-generated method stub
+	public Jogador aplicarRegra(Jogador jogador) {
+		//TABULEIRO: decorator dos itens.
+		return jogador;
 		
 	}
 	
