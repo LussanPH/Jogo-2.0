@@ -7,11 +7,7 @@ public class JogadorSortudo extends Jogador{
 	public JogadorSortudo(String cor) {
 		this.cor = cor;
 		this.casa = 0;
-	}
-	public JogadorSortudo(String cor, int casa, int pontuacao) {
-		this.cor = cor;
-		this.casa = casa;
-		this.pontuacao = pontuacao;
+		tipo = TipoDeJogador.SORTUDO;
 	}
 	
 	private int soma(Dado[] dado) {

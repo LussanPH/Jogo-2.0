@@ -9,12 +9,19 @@ public class CasaSurpresa extends Casa{
 		// TODO Auto-generated constructor stub
 	}
 
-	public void aplicarRegra(Jogador jogador){
+	public Jogador aplicarRegra(Jogador jogador){
 		Random rdm = new Random();
 		TipoDeJogador[] tipoDeJogador = TipoDeJogador.values();
 		int selected = rdm.nextInt(tipoDeJogador.length);
 		TipoDeJogador TdJ = tipoDeJogador[selected];
-		jogador = JogadorFactory.newJogador(TdJ, jogador.getCor(), jogador.casa, jogador.getPontuacao());
+		Jogador newClassjogador = JogadorFactory.newJogador(TdJ, jogador.getCor());
+		newClassjogador.setMoedas(jogador.getMoedas());
+		newClassjogador.casa = jogador.casa;
+		jogador = newClassjogador;
+		
+		return jogador;
+		
+		
 		
 	}
 }
