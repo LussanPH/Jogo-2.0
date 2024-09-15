@@ -4,6 +4,6 @@ import jogadores.*;
 public abstract class Casa {
 	public int numero;
 	
-	public abstract void aplicarRegra(Jogador jogador);
+	public abstract Jogador aplicarRegra(Jogador jogador);
 	
 }
