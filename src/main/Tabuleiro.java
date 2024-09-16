@@ -16,6 +16,10 @@ public class Tabuleiro {
         return casas;
     }
 
+    public void setCores(String cor, int i) {
+        casas[i].add(cor);
+    }
+
     public static Tabuleiro getInstance(){
         if(tabuleiro == null){
             tabuleiro = new Tabuleiro();
