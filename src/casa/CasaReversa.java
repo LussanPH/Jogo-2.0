@@ -5,6 +5,7 @@ public class CasaReversa extends Casa{
 
 	public CasaReversa(int numero) {
 		this.numero = numero;
+		tipo = TipoDeCasa.REVERSA;
 		// TODO Auto-generated constructor stub
 	}
 
