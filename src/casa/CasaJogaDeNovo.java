@@ -5,6 +5,7 @@ public class CasaJogaDeNovo extends Casa{
 	public CasaJogaDeNovo(int numero) {
 		// TODO Auto-generated constructor stub
 		this.numero = numero;
+		tipo = TipoDeCasa.JOGADENOVO;
 	}
 
 	@Override
