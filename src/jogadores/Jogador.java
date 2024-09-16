@@ -9,6 +9,7 @@ public abstract class Jogador {
 	protected boolean ispreso = false;
 	protected int sentenca = 0;
 	protected TipoDeJogador tipo;
+	protected boolean isBone = false, isMoletom = false, isOculosEscuros = false;
 	
 	public String getCor() {
 		return cor;
@@ -31,6 +32,27 @@ public abstract class Jogador {
 	}
 	public void setPreso(boolean preso) {
 		ispreso = preso;
+	}
+
+	public boolean isBone() {
+		return isBone;
+	}
+	public void setBone(boolean bone) {
+		isBone = bone;
+	}
+
+	public boolean isMoletom() {
+		return isMoletom;
+	}
+	public void setMoletom(boolean moletom) {
+		isMoletom = moletom;
+	}
+
+	public boolean isOculosEscuros() {
+		return isOculosEscuros;
+	}
+	public void setOculosEscuros(boolean OculosEscuros) {
+		isOculosEscuros = OculosEscuros;
 	}
 	
 	public int getMoedas() {
