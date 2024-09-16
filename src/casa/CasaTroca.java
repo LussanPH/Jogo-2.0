@@ -7,9 +7,10 @@ public class CasaTroca extends Casa{
 
 	public CasaTroca(int numero) {
 		this.numero = numero;
+		tipo = TipoDeCasa.TROCA;
 	}
 
-	public void getResposta(String resposta){
+	public void setResposta(String resposta){
 		this.resposta = resposta;
 	}
 
