@@ -8,6 +8,7 @@ public abstract class Jogador {
 	protected int moedas = 0;
 	protected boolean ispreso = false;
 	protected int sentenca = 0;
+	protected TipoDeJogador tipo;
 	
 	public String getCor() {
 		return cor;
@@ -42,7 +43,20 @@ public abstract class Jogador {
 			throw new IllegalArgumentException("Pontuacao não pode ser menor que 0");
 		}
 	}
-	
+	public TipoDeJogador getTipo() {
+		return tipo;
+	}
+	public void setTipo(TipoDeJogador tipo) {
+		this.tipo = tipo;
+	}
+
+	protected void intanciadoDados(){
+		dado[0] = new Dado();
+		dado[1] = new Dado();
+	}
+	public int somaDados(){
+		return dado[0].getFace() + dado[1].getFace();
+	}
 	public abstract void JogarDados();
 	public void Andar() {
 		casa += dado[0].getFace() + dado[1].getFace();
