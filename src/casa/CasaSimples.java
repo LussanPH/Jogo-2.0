@@ -5,6 +5,7 @@ public class CasaSimples extends Casa{
 	
 	public CasaSimples(int numero) {
 		this.numero = numero;
+		tipo = TipoDeCasa.SIMPLES;
 	}
 	
 	public Jogador aplicarRegra(Jogador jogador) {
