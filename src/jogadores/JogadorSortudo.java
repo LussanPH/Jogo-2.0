@@ -7,6 +7,7 @@ public class JogadorSortudo extends Jogador{
 	public JogadorSortudo(String cor) {
 		this.cor = cor;
 		this.casa = 0;
+		tipo = TipoDeJogador.SORTUDO;
 	}
 	
 	private int soma(Dado[] dado) {
@@ -14,6 +15,7 @@ public class JogadorSortudo extends Jogador{
 		return soma;
 	}
 	public void JogarDados() {
+		intanciadoDados();
 		dado[0].JogarDado();
 		dado[1].JogarDado();
 		if(soma(dado) < 7 ) {
