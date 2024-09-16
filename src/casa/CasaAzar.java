@@ -2,12 +2,12 @@ package casa;
 
 import jogadores.Jogador;
 import jogadores.JogadorSortudo;
-import jogadores.TipoDeJogador;
 
 public class CasaAzar extends Casa{
 
 	public CasaAzar(int numero) {
 		this.numero = numero;
+		tipo = TipoDeCasa.AZAR;
 	}
 
 	@Override
