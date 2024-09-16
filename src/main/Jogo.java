@@ -4,6 +4,16 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import casa.Casa;
+import casa.CasaAzar;
+import casa.CasaJogaDeNovo;
+import casa.CasaPrisao;
+import casa.CasaReversa;
+import casa.CasaSimples;
+import casa.CasaSorte;
+import casa.CasaSurpresa;
+import casa.CasaTroca;
+import casa.TipoDeCasa;
 import exceptions.InvalidNumberException;
 import jogadores.*;
 public class Jogo {
@@ -16,7 +26,7 @@ public class Jogo {
 
     private void printTabuleiro(Tabuleiro t, List<Jogador> jogadores){
         for(Jogador j : jogadores){
-            System.out.println("Cor: " + j.getCor() + ", Moedas: " + j.getMoedas() + ", Casa: " + j.casa);
+            System.out.println("Cor: " + j.getCor() + ", Moedas: " + j.getMoedas() + ", Casa: " + (j.casa + 1));
         }
     }
 
@@ -51,6 +61,7 @@ public class Jogo {
                         }
                         if(diff == 0){
                             TipoDeJogador tipo = jogadores.get(0).getTipo();
+                            System.out.println(tipo);
                             while(teste2 == true){
                                 try{
                                     if(tipo == TipoDeJogador.AZARADO){
@@ -225,16 +236,391 @@ public class Jogo {
         return coresSelecionadas;
     }
 
+    private List<Casa> instanciarCasas(Tabuleiro t){
+        List<Integer> casas = new ArrayList<>();
+        List<Casa> casasTabuleiro = new ArrayList<>();
+        int i = 1;
+        Scanner sc = new Scanner(System.in);
+        boolean teste1 = true;
+        for(List<String> casa : t.getCasas()){
+            casas.add(i);
+            casasTabuleiro.add(new CasaSimples(i));
+            i++;
+        }
+        while(teste1 == true){
+            teste1 = false;
+            try{
+                System.out.println("Escolha quantas casas serão azaradas: ");
+                int a = sc.nextInt();
+                sc.nextLine();
+                if(a > casas.size() || a < 0){
+                    throw new InvalidNumberException("Digite uma quantidade válida!");
+                }
+                else if(a == 0){
+                    continue;
+                }
+                else{
+                    try{
+                        System.out.println("Quais?(Digite o número da(s) casa(s) que deseja selecionar separada(s) por espaço)");
+                        System.out.println("Casas disponíveis: " + casas);
+                        String c = sc.nextLine();
+                        String[] c2 = c.split(" ");
+                        int[] numeros = new int[c2.length];
+                        for(i = 0; i < numeros.length; i++){
+                            numeros[i] = Integer.parseInt(c2[i]);
+                        }
+                        for(int num : numeros){
+                            if(!casas.contains(num)){
+                                throw new InvalidNumberException("Número(s) não disponível(is) no tabuleiuro!");
+                            }
+                            casas.remove(Integer.valueOf(num));
+                            casasTabuleiro.remove(num-1);
+                            casasTabuleiro.add(num-1, new CasaAzar(num-1));
+                        }
+                    }
+                    catch(InvalidNumberException e){
+                        System.out.println(e.getMessage());
+                        teste1 = true;
+                    }
+                    catch(NumberFormatException e){
+                        System.out.println("Digite um número!");
+                        teste1 = true;
+                    }
+                }
+            }
+            catch(InvalidNumberException e){
+                System.out.println(e.getMessage());
+                teste1 = true;
+            }
+            catch(InputMismatchException e){
+                System.out.println("Digite um número!");
+                teste1 = true;
+            }
+        }
+        teste1 = true;
+        while(teste1 == true){
+            teste1 = false;
+            try{
+                System.out.println("Escolha quantas casas serão sorte: ");
+                int a = sc.nextInt();
+                sc.nextLine();
+                if(a > casas.size() || a < 0){
+                    throw new InvalidNumberException("Digite uma quantidade válida!");
+                }
+                else if(a == 0){
+                    continue;
+                }
+                else{
+                    try{
+                        System.out.println("Quais?(Digite o número da(s) casa(s) que deseja selecionar separada(s) por espaço)");
+                        System.out.println("Casas disponíveis: " + casas);
+                        String c = sc.nextLine();
+                        String[] c2 = c.split(" ");
+                        int[] numeros = new int[c2.length];
+                        for(i = 0; i < numeros.length; i++){
+                            numeros[i] = Integer.parseInt(c2[i]);
+                        }
+                        for(int num : numeros){
+                            if(!casas.contains(num)){
+                                throw new InvalidNumberException("Número(s) não disponível(is) no tabuleiuro!");
+                            }
+                            casas.remove(Integer.valueOf(num));
+                            casasTabuleiro.remove(num-1);
+                            casasTabuleiro.add(num-1, new CasaSorte(num-1));
+                        }
+                    }
+                    catch(InvalidNumberException e){
+                        System.out.println(e.getMessage());
+                        teste1 = true;
+                    }
+                    catch(NumberFormatException e){
+                        System.out.println("Digite um número!");
+                        teste1 = true;
+                    }
+                }
+            }
+            catch(InvalidNumberException e){
+                System.out.println(e.getMessage());
+                teste1 = true;
+            }
+            catch(InputMismatchException e){
+                System.out.println("Digite um número!");
+                teste1 = true;
+            }
+        }
+        teste1 = true;
+        while(teste1 == true){
+            teste1 = false;
+            try{
+                System.out.println("Escolha quantas casas serão jogar novamente: ");
+                int a = sc.nextInt();
+                sc.nextLine();
+                if(a > casas.size() || a < 0){
+                    throw new InvalidNumberException("Digite uma quantidade válida!");
+                }
+                else if(a == 0){
+                    continue;
+                }
+                else{
+                    try{
+                        System.out.println("Quais?(Digite o número da(s) casa(s) que deseja selecionar separada(s) por espaço)");
+                        System.out.println("Casas disponíveis: " + casas);
+                        String c = sc.nextLine();
+                        String[] c2 = c.split(" ");
+                        int[] numeros = new int[c2.length];
+                        for(i = 0; i < numeros.length; i++){
+                            numeros[i] = Integer.parseInt(c2[i]);
+                        }
+                        for(int num : numeros){
+                            if(!casas.contains(num)){
+                                throw new InvalidNumberException("Número(s) não disponível(is) no tabuleiuro!");
+                            }
+                            casas.remove(Integer.valueOf(num));
+                            casasTabuleiro.remove(num-1);
+                            casasTabuleiro.add(num-1, new CasaJogaDeNovo(num-1));
+                        }
+                    }
+                    catch(InvalidNumberException e){
+                        System.out.println(e.getMessage());
+                        teste1 = true;
+                    }
+                    catch(NumberFormatException e){
+                        System.out.println("Digite um número!");
+                        teste1 = true;
+                    }
+                }
+            }
+            catch(InvalidNumberException e){
+                System.out.println(e.getMessage());
+                teste1 = true;
+            }
+            catch(InputMismatchException e){
+                System.out.println("Digite um número!");
+                teste1 = true;
+            }
+        }
+        teste1 = true;
+        while(teste1 == true){
+            teste1 = false;
+            try{
+                System.out.println("Escolha quantas casas serão prisão: ");
+                int a = sc.nextInt();
+                sc.nextLine();
+                if(a > casas.size() || a < 0){
+                    throw new InvalidNumberException("Digite uma quantidade válida!");
+                }
+                else if(a == 0){
+                    continue;
+                }
+                else{
+                    try{
+                        System.out.println("Quais?(Digite o número da(s) casa(s) que deseja selecionar separada(s) por espaço)");
+                        System.out.println("Casas disponíveis: " + casas);
+                        String c = sc.nextLine();
+                        String[] c2 = c.split(" ");
+                        int[] numeros = new int[c2.length];
+                        for(i = 0; i < numeros.length; i++){
+                            numeros[i] = Integer.parseInt(c2[i]);
+                        }
+                        for(int num : numeros){
+                            if(!casas.contains(num)){
+                                throw new InvalidNumberException("Número(s) não disponível(is) no tabuleiuro!");
+                            }
+                            casas.remove(Integer.valueOf(num));
+                            casasTabuleiro.remove(num-1);
+                            casasTabuleiro.add(num-1, new CasaPrisao(num-1));
+                        }
+                    }
+                    catch(InvalidNumberException e){
+                        System.out.println(e.getMessage());
+                        teste1 = true;
+                    }
+                    catch(NumberFormatException e){
+                        System.out.println("Digite um número!");
+                        teste1 = true;
+                    }
+                }
+            }
+            catch(InvalidNumberException e){
+                System.out.println(e.getMessage());
+                teste1 = true;
+            }
+            catch(InputMismatchException e){
+                System.out.println("Digite um número!");
+                teste1 = true;
+            }
+        }
+        teste1 = true;
+        while(teste1 == true){
+            teste1 = false;
+            try{
+                System.out.println("Escolha quantas casas serão reversas: ");
+                int a = sc.nextInt();
+                sc.nextLine();
+                if(a > casas.size() || a < 0){
+                    throw new InvalidNumberException("Digite uma quantidade válida!");
+                }
+                else if(a == 0){
+                    continue;
+                }
+                else{
+                    try{
+                        System.out.println("Quais?(Digite o número da(s) casa(s) que deseja selecionar separada(s) por espaço)");
+                        System.out.println("Casas disponíveis: " + casas);
+                        String c = sc.nextLine();
+                        String[] c2 = c.split(" ");
+                        int[] numeros = new int[c2.length];
+                        for(i = 0; i < numeros.length; i++){
+                            numeros[i] = Integer.parseInt(c2[i]);
+                        }
+                        for(int num : numeros){
+                            if(!casas.contains(num)){
+                                throw new InvalidNumberException("Número(s) não disponível(is) no tabuleiuro!");
+                            }
+                            casas.remove(Integer.valueOf(num));
+                            casasTabuleiro.remove(num-1);
+                            casasTabuleiro.add(num-1, new CasaReversa(num-1));
+                        }
+                    }
+                    catch(InvalidNumberException e){
+                        System.out.println(e.getMessage());
+                        teste1 = true;
+                    }
+                    catch(NumberFormatException e){
+                        System.out.println("Digite um número!");
+                        teste1 = true;
+                    }
+                }
+            }
+            catch(InvalidNumberException e){
+                System.out.println(e.getMessage());
+                teste1 = true;
+            }
+            catch(InputMismatchException e){
+                System.out.println("Digite um número!");
+                teste1 = true;
+            }
+        }
+        teste1 = true;
+        while(teste1 == true){
+            teste1 = false;
+            try{
+                System.out.println("Escolha quantas casas surpresa: ");
+                int a = sc.nextInt();
+                sc.nextLine();
+                if(a > casas.size() || a < 0){
+                    throw new InvalidNumberException("Digite uma quantidade válida!");
+                }
+                else if(a == 0){
+                    continue;
+                }
+                else{
+                    try{
+                        System.out.println("Quais?(Digite o número da(s) casa(s) que deseja selecionar separada(s) por espaço)");
+                        System.out.println("Casas disponíveis: " + casas);
+                        String c = sc.nextLine();
+                        String[] c2 = c.split(" ");
+                        int[] numeros = new int[c2.length];
+                        for(i = 0; i < numeros.length; i++){
+                            numeros[i] = Integer.parseInt(c2[i]);
+                        }
+                        for(int num : numeros){
+                            if(!casas.contains(num)){
+                                throw new InvalidNumberException("Número(s) não disponível(is) no tabuleiuro!");
+                            }
+                            casas.remove(Integer.valueOf(num));
+                            casasTabuleiro.remove(num-1);
+                            casasTabuleiro.add(num-1, new CasaSurpresa(num-1));
+                        }
+                    }
+                    catch(InvalidNumberException e){
+                        System.out.println(e.getMessage());
+                        teste1 = true;
+                    }
+                    catch(NumberFormatException e){
+                        System.out.println("Digite um número!");
+                        teste1 = true;
+                    }
+                }
+            }
+            catch(InvalidNumberException e){
+                System.out.println(e.getMessage());
+                teste1 = true;
+            }
+            catch(InputMismatchException e){
+                System.out.println("Digite um número!");
+                teste1 = true;
+            }
+        }
+        teste1 = true;
+        while(teste1 == true){
+            teste1 = false;
+            try{
+                System.out.println("Escolha quantas casas serão troca: ");
+                int a = sc.nextInt();
+                sc.nextLine();
+                if(a > casas.size() || a < 0){
+                    throw new InvalidNumberException("Digite uma quantidade válida!");
+                }
+                else if(a == 0){
+                    continue;
+                }
+                else{
+                    try{
+                        System.out.println("Quais?(Digite o número da(s) casa(s) que deseja selecionar separada(s) por espaço)");
+                        System.out.println("Casas disponíveis: " + casas);
+                        String c = sc.nextLine();
+                        String[] c2 = c.split(" ");
+                        int[] numeros = new int[c2.length];
+                        for(i = 0; i < numeros.length; i++){
+                            numeros[i] = Integer.parseInt(c2[i]);
+                        }
+                        for(int num : numeros){
+                            if(!casas.contains(num)){
+                                throw new InvalidNumberException("Número(s) não disponível(is) no tabuleiuro!");
+                            }
+                            casas.remove(Integer.valueOf(num));
+                            casasTabuleiro.remove(num-1);
+                            casasTabuleiro.add(num-1, new CasaTroca(num-1));
+                        }
+                        for(Casa casasas : casasTabuleiro){
+                                System.out.println(casasas.tipo);
+                        }
+                    }
+                    catch(InvalidNumberException e){
+                        System.out.println(e.getMessage());
+                        teste1 = true;
+                    }
+                    catch(NumberFormatException e){
+                        System.out.println("Digite um número!");
+                        teste1 = true;
+                    }
+                }
+            }
+            catch(InvalidNumberException e){
+                System.out.println(e.getMessage());
+                teste1 = true;
+            }
+            catch(InputMismatchException e){
+                System.out.println("Digite um número!");
+                teste1 = true;
+            }
+        }
+        return casasTabuleiro;
+    }
+
     public void rodarJogo(){
         Tabuleiro t = criarTabuleiro();
         List<String> cores = new ArrayList<>();
         List<Jogador> jogadores = new ArrayList<>();
+        List<Casa> casas = new ArrayList<>();
         boolean encerrar = false;
         Scanner sc = new Scanner(System.in);
         try{
             cores = selecionarJogadores();
             inicializarTabuleiro(cores, t);
             jogadores = instanciarJogadores(cores);
+            casas = instanciarCasas(t);
             for(Jogador j : jogadores){
                 j.casa = 0;
             }
@@ -245,7 +631,10 @@ public class Jogo {
                     sc.nextLine();
                     j.JogarDados();
                     j.Andar();
-                    System.out.println(j.somaDados());
+                    System.out.println("Soma dos dados: " + j.somaDados());
+                    if(casas.get(j.casa - 1).tipo == TipoDeCasa.AZAR){
+                        casas.get(j.casa - 1).aplicarRegra(j);
+                    }
                 }
             }
         }
