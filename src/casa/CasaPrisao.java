@@ -6,6 +6,7 @@ public class CasaPrisao extends Casa{
 
 	public CasaPrisao(int numero) {
 		this.numero = numero;
+        	tipo = TipoDeCasa.PRISAO;
 		// TODO Auto-generated constructor stub
 	}
 	
