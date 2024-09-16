@@ -12,7 +12,7 @@ public class CasaAzar extends Casa{
 
 	@Override
 	public Jogador aplicarRegra(Jogador jogador) {
-		if (jogador instanceof JogadorSortudo) {
+		if (!(jogador instanceof JogadorSortudo)) {
 			try {
 			jogador.setMoedas(jogador.getMoedas() - 3);
 			}catch(IllegalArgumentException iae) {

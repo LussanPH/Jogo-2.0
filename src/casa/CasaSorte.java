@@ -11,7 +11,7 @@ public class CasaSorte extends Casa{
 
 	@Override
 	public Jogador aplicarRegra(Jogador jogador) {
-		if(jogador instanceof JogadorAzarado) {
+		if(!(jogador instanceof JogadorAzarado)) {
 			jogador.casa += 3;
 		}
 		return jogador;
