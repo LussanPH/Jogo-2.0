@@ -625,15 +625,84 @@ public class Jogo {
                 j.casa = 0;
             }
             while(encerrar == false){
-                for(Jogador j : jogadores){
+                for(int i = 0; i<jogadores.size(); i++){
+                    Jogador j = jogadores.get(i);
                     printTabuleiro(t, jogadores);
-                    System.out.println("Vez do jogador de peça " + j.getCor());
-                    sc.nextLine();
-                    j.JogarDados();
-                    j.Andar();
-                    System.out.println("Soma dos dados: " + j.somaDados());
-                    if(casas.get(j.casa - 1).tipo == TipoDeCasa.AZAR){
-                        casas.get(j.casa - 1).aplicarRegra(j);
+                    System.out.println("Vez do jogador de peça " + j.getCor() + " pressione Enter");
+                    if(!j.isPreso()){
+                        sc.nextLine();
+                        j.JogarDados();
+                        j.Andar();
+                        System.out.println("Soma dos dados: " + j.somaDados());
+                    }
+                    if(j.casa >= 39){
+                        encerrar = true;
+                        System.out.println("Jogador de peça " + j.getCor() + " ganhou a partida!");
+                        printTabuleiro(t, jogadores);
+                        break;
+                    }
+                    if(casas.get(j.casa).tipo == TipoDeCasa.AZAR){
+                        casas.get(j.casa).aplicarRegra(j);
+                    }
+                    else if(casas.get(j.casa).tipo == TipoDeCasa.JOGADENOVO){
+                        casas.get(j.casa).aplicarRegra(j);
+                    }
+                    else if(casas.get(j.casa).tipo == TipoDeCasa.PRISAO){
+                        CasaPrisao prisao = new CasaPrisao(j.casa);
+                        System.out.println("Jogador foi preso!");
+                        System.out.println("Pagar fiança? (2 moedas) (sim/nao): ");
+                        String r = sc.next();
+                        prisao.setResposta(r);
+                        prisao.aplicarRegra(j);
+                        if(!j.isPreso()){
+                            j.JogarDados();
+                            j.Andar();
+                            System.out.println("Soma dos dados: " + j.somaDados());
+                        }
+                        sc.nextLine();
+                    }
+                    else if(casas.get(j.casa).tipo == TipoDeCasa.REVERSA){
+                        casas.get(j.casa).aplicarRegra(j);
+                    }
+                    else if(casas.get(j.casa ).tipo == TipoDeCasa.SIMPLES){
+                        casas.get(j.casa).aplicarRegra(j);
+                    }
+                    else if(casas.get(j.casa).tipo == TipoDeCasa.SORTE){
+                        casas.get(j.casa).aplicarRegra(j);
+                    }
+                    else if(casas.get(j.casa).tipo == TipoDeCasa.SURPRESA){
+                        casas.get(j.casa).aplicarRegra(j);
+                    }
+                    else if(casas.get(j.casa).tipo == TipoDeCasa.TROCA){
+                        CasaTroca troca = new CasaTroca(j.casa);
+                        System.out.println("Deseja realizar uma compra?(sim/não)");
+                        String r = sc.next();
+                        troca.setResposta(r);
+                        String corOriginal = j.getCor();
+                        int casaOriginal = j.casa;
+                        TipoDeJogador tipoOriginal = j.getTipo();
+                        j = troca.aplicarRegra(j);
+                        boolean bone = j.isBone();
+                        boolean moletom = j.isMoletom();
+                        boolean oculosEscuros = j.isOculosEscuros();
+                        int moedasOriginais = j.getMoedas();
+                        j.casa = casaOriginal;
+                        if(tipoOriginal == TipoDeJogador.AZARADO){
+                            j = new JogadorAzarado(corOriginal);
+                        }
+                        else if(tipoOriginal == TipoDeJogador.COMUM){
+                            j = new JogadorComum(corOriginal);
+                        }
+                        else{
+                            j = new JogadorSortudo(corOriginal);
+                        }
+                        j.casa = casaOriginal;
+                        j.setMoedas(moedasOriginais);
+                        j.setBone(bone);
+                        j.setMoletom(moletom);
+                        j.setOculosEscuros(oculosEscuros);
+                        jogadores.set(i, j);
+                        sc.nextLine();
                     }
                 }
             }
