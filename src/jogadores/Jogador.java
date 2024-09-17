@@ -1,4 +1,5 @@
 package jogadores;
+import exceptions.IllegalMoneyException;
 import jogadores.dado.*;
 
 public abstract class Jogador {
@@ -76,11 +77,11 @@ public abstract class Jogador {
 	public int getMoedas() {
 		return moedas;
 	}
-	public void setMoedas(int pontuacao) {
+	public void setMoedas(int pontuacao) throws IllegalMoneyException {
 		if(pontuacao >= 0) {
 		this.moedas = pontuacao;
 		}else{
-			throw new IllegalArgumentException("Pontuacao não pode ser menor que 0");
+			throw new IllegalMoneyException();
 		}
 	}
 	public TipoDeJogador getTipo() {

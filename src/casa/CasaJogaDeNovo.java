@@ -16,10 +16,18 @@ public class CasaJogaDeNovo extends Casa{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Jogue novamente!, pressione enter");
     	sc.nextLine();
+    	if(!jogador.getDebug()) {
         jogador.JogarDados();
         jogador.Andar();
         System.out.println("Soma dos dados: " + jogador.somaDados());
-		return jogador;
+		
+    	}else {
+    		System.out.println("Digite quantas casas quer andar");
+    		int casa = sc.nextInt();
+    		jogador.Andar(casa);
+    		sc.nextLine();
+    	}
+    	return jogador;
 	}
 
 }
