@@ -16,12 +16,13 @@ public class CasaTroca extends Casa{
 
 	@Override
 	public Jogador aplicarRegra(Jogador jogador) {
+		Jogador JOGADOR = jogador;
 		if(resposta.equalsIgnoreCase("sim")){
 			if(!jogador.isBone() && !jogador.isMoletom() && !jogador.isOculosEscuros()){
 				// boné vale 4 moedas
 				if(jogador.getMoedas() >= 4){
-					jogador = new Bone(jogador);
-					jogador.setMoedas(jogador.getMoedas() - 4);
+					JOGADOR = new Bone(jogador);
+					JOGADOR.setMoedas(jogador.getMoedas() - 4);
 					System.out.println("compra feita com sucesso! Jogador está de boné");
 				}
 				else{
@@ -31,8 +32,8 @@ public class CasaTroca extends Casa{
 			else if(jogador.isBone() && !jogador.isMoletom() && !jogador.isOculosEscuros()){
 				// moletom vale 6 moedas
 				if(jogador.getMoedas() >= 6){
-					jogador = new Moletom(jogador);
-					jogador.setMoedas(jogador.getMoedas() - 6);
+					JOGADOR = new Moletom(jogador);
+					JOGADOR.setMoedas(jogador.getMoedas() - 6);
 					System.out.println("compra feita com sucesso! Jogador está de boné e moletom");
 				}
 				else{
@@ -42,8 +43,8 @@ public class CasaTroca extends Casa{
 			else{
 				// oculos escuros vale 8 moedas
 				if(jogador.getMoedas() >= 8){
-					jogador = new OculosEscuros(jogador);
-					jogador.setMoedas(jogador.getMoedas() - 8);
+					JOGADOR = new OculosEscuros(jogador);
+					JOGADOR.setMoedas(jogador.getMoedas() - 8);
 					System.out.println("compra feita com sucesso! Jogador está de boné, moletom e óculos escuros");
 				}
 				else{
@@ -54,6 +55,6 @@ public class CasaTroca extends Casa{
 		else{
 			System.out.println("jogador não quis comprar nada");
 		}
-		return jogador;
+		return JOGADOR;
 	}
 }
