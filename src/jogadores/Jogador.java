@@ -14,6 +14,9 @@ public abstract class Jogador {
 	public String getCor() {
 		return cor;
 	}
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
 	
 	public int getSentenca() {
 		return sentenca;
@@ -59,7 +62,7 @@ public abstract class Jogador {
 		return moedas;
 	}
 	public void setMoedas(int pontuacao) {
-		if(pontuacao > 0) {
+		if(pontuacao >= 0) {
 		this.moedas = pontuacao;
 		}else{
 			throw new IllegalArgumentException("Pontuacao não pode ser menor que 0");
