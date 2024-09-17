@@ -24,8 +24,11 @@ public class CasaTroca extends Casa{
 			if(!jogador.isBone() && !jogador.isMoletom() && !jogador.isOculosEscuros()){
 				// boné vale 4 moedas
 				try {
-					JOGADOR.setMoedas(jogador.getMoedas() - 4);
+					jogador.setMoedas(jogador.getMoedas() - 4);
+					int moedasOriginais2 = jogador.getMoedas();
 					JOGADOR = new Bone(jogador);
+					JOGADOR.setMoedas(moedasOriginais2);
+					System.out.println("compra feita com sucesso! Jogador está de boné");
 				} catch (IllegalMoneyException ime) {
 					System.out.println("saldo insuficiente");
 				}
@@ -34,7 +37,9 @@ public class CasaTroca extends Casa{
 				// moletom vale 6 moedas
 					try {
 						JOGADOR.setMoedas(jogador.getMoedas() - 6);
+						int moedasOriginais2 = jogador.getMoedas();
 						JOGADOR = new Moletom(jogador);
+						JOGADOR.setMoedas(moedasOriginais2);
 						System.out.println("compra feita com sucesso! Jogador está de boné e moletom");
 					}catch(IllegalMoneyException ime) {
 						System.out.println("saldo insuficiente");
@@ -44,7 +49,9 @@ public class CasaTroca extends Casa{
 				// oculos escuros vale 8 moedas
 				try {
 					JOGADOR.setMoedas(jogador.getMoedas() - 8);
+					int moedasOriginais2 = jogador.getMoedas();
 					JOGADOR = new OculosEscuros(jogador);
+					JOGADOR.setMoedas(moedasOriginais2);
 					System.out.println("compra feita com sucesso! Jogador está de boné, moletom e óculos escuros");
 				}
 				catch(IllegalMoneyException ime){
