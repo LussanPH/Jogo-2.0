@@ -1,5 +1,6 @@
 package casa;
 import jogadores.*;
+import java.util.List;
 
 public class CasaTroca extends Casa{
 
@@ -15,7 +16,7 @@ public class CasaTroca extends Casa{
 	}
 
 	@Override
-	public Jogador aplicarRegra(Jogador jogador) {
+	public Jogador aplicarRegra(Jogador jogador, List<Jogador> jogadores) {
 		Jogador JOGADOR = jogador;
 		if(resposta.equalsIgnoreCase("sim")){
 			if(!jogador.isBone() && !jogador.isMoletom() && !jogador.isOculosEscuros()){
