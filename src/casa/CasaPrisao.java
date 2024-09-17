@@ -1,5 +1,6 @@
 package casa;
 import jogadores.*;
+import java.util.List;
 
 public class CasaPrisao extends Casa{
 	
@@ -19,7 +20,7 @@ public class CasaPrisao extends Casa{
 	}
 
 	@Override
-	public Jogador aplicarRegra(Jogador jogador) {
+	public Jogador aplicarRegra(Jogador jogador, List<Jogador> jogadores) {
         if (!jogador.isPreso()) {
             jogador.setPreso(true);
             jogador.setSentenca(2);
@@ -35,13 +36,9 @@ public class CasaPrisao extends Casa{
                 System.out.println("Fiança paga! Jogador está livre.");
             } 
             // Se o jogador não paga a fiança, a sentença diminui em 1
-            else if(resposta.equals("nao")){
+            else {
                 jogador.setSentenca(jogador.getSentenca() - 1);
-                System.out.println("Jogador optou por não pagar a fiança. Turnos restantes: " + jogador.getSentenca());
-            }
-            else if(jogador.getMoedas() < 2) {
-            	jogador.setSentenca(jogador.getSentenca() - 1);
-            	System.out.println("Saldo Insuficiente. Turnos restantes: " + jogador.getSentenca());
+                System.out.println("Jogador optou por não pagar a fiança ou tinha saldo insuficiente. Turnos restantes: " + jogador.getSentenca());
             }
         } else if (jogador.getSentenca() == 0) {
             jogador.setPreso(false);
