@@ -9,13 +9,28 @@ public abstract class Jogador {
 	protected boolean ispreso = false;
 	protected int sentenca = 0;
 	protected TipoDeJogador tipo;
-	protected boolean isBone = false, isMoletom = false, isOculosEscuros = false;
+	protected int rodadasJogadas = 0;
+	protected boolean isBone = false, isMoletom = false, isOculosEscuros = false, debug = false;
 	
 	public String getCor() {
 		return cor;
 	}
 	public void setCor(String cor) {
 		this.cor = cor;
+	}
+	public boolean getDebug(){
+		return debug;
+	}
+	public void setDebug(boolean debug) {
+		this.debug = debug;
+	}
+
+	public int getRodadasJogadas() {
+		return rodadasJogadas;
+	}
+
+	public void setRodadasJogadas(int rodadasJogadas) {
+		this.rodadasJogadas = rodadasJogadas;
 	}
 	
 	public int getSentenca() {
