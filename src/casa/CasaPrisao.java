@@ -2,6 +2,8 @@ package casa;
 import jogadores.*;
 import java.util.List;
 
+import exceptions.IllegalMoneyException;
+
 public class CasaPrisao extends Casa{
 	
 	private String resposta;
@@ -29,11 +31,15 @@ public class CasaPrisao extends Casa{
         // Se o jogador já está preso e ainda tem sentença a cumprir
         else if (jogador.getSentenca() > 0) {
             // Se o jogador opta por pagar a fiança
-            if (resposta.equals("sim") && jogador.getMoedas() >= 2) {
-                jogador.setMoedas(jogador.getMoedas() - 2);
-                jogador.setPreso(false);
-                jogador.setSentenca(0);
-                System.out.println("Fiança paga! Jogador está livre.");
+            if (resposta.equals("sim")) {
+                try {
+					jogador.setMoedas(jogador.getMoedas() - 2);
+					jogador.setPreso(false);
+	                jogador.setSentenca(0);
+	                System.out.println("Fiança paga! Jogador está livre.");
+				} catch (IllegalMoneyException e) {
+					System.out.println("Saldo Insuficiente");
+				}
             } 
             // Se o jogador não paga a fiança, a sentença diminui em 1
             else {

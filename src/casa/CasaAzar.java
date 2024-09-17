@@ -4,6 +4,8 @@ import jogadores.Jogador;
 import jogadores.JogadorSortudo;
 import java.util.List;
 
+import exceptions.IllegalMoneyException;
+
 public class CasaAzar extends Casa{
 
 	public CasaAzar(int numero) {
@@ -15,14 +17,13 @@ public class CasaAzar extends Casa{
 	public Jogador aplicarRegra(Jogador jogador, List<Jogador> jogadores) {
 		if (!(jogador instanceof JogadorSortudo)) {
 			try {
-				if(jogador.getMoedas() < 3){
-					jogador.setMoedas(0);
+				jogador.setMoedas(jogador.getMoedas() - 3);	
+			}catch(IllegalMoneyException ime) {
+				try {
+					jogador.setMoedas(jogador.getMoedas());
+				} catch (IllegalMoneyException e) {
+					e.printStackTrace();
 				}
-				else{
-					jogador.setMoedas(jogador.getMoedas() - 3);
-				}	
-			}catch(IllegalArgumentException iae) {
-				jogador.setMoedas(jogador.getMoedas());
 			}
 		}
 		

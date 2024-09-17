@@ -1,6 +1,9 @@
 package casa;
 import jogadores.*;
 import java.util.Random;
+
+import exceptions.IllegalMoneyException;
+
 import java.util.List;
 
 public class CasaSurpresa extends Casa{
@@ -17,7 +20,12 @@ public class CasaSurpresa extends Casa{
 		int selected = rdm.nextInt(tipoDeJogador.length);
 		TipoDeJogador TdJ = tipoDeJogador[selected];
 		Jogador newClassjogador = JogadorFactory.newJogador(TdJ, jogador.getCor());
-		newClassjogador.setMoedas(jogador.getMoedas());
+		try {
+			newClassjogador.setMoedas(jogador.getMoedas());
+		} catch (IllegalMoneyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		newClassjogador.casa = jogador.casa;
 		newClassjogador.setRodadasJogadas(jogador.getRodadasJogadas());
 		newClassjogador.setDebug(jogador.getDebug());

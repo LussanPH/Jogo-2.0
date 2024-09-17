@@ -24,8 +24,8 @@ public class JogadorAzarado extends Jogador{
 			int corrigido = (soma(dado) - 5);
 			if(corrigido % 2 == 0) {
 				try {
-				dado[0].setFace(corrigido/2);
-				dado[1].setFace(corrigido/2);
+				dado[0].setFace((int)(corrigido/2));
+				dado[1].setFace((int)(corrigido/2));
 				}catch(InvalidFaceException ive) {
 					ive.printStackTrace();
 				}

@@ -14,6 +14,7 @@ import casa.CasaSorte;
 import casa.CasaSurpresa;
 import casa.CasaTroca;
 import casa.TipoDeCasa;
+import exceptions.IllegalMoneyException;
 import exceptions.InvalidNumberException;
 import jogadores.*;
 public class Jogo {
@@ -809,7 +810,10 @@ public class Jogo {
                     }
                 }
             }
-        }
+        } catch (IllegalMoneyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         finally{}
     }
     
