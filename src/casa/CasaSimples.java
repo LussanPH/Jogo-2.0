@@ -1,5 +1,6 @@
 package casa;
 import jogadores.*;
+import java.util.List;
 
 public class CasaSimples extends Casa{
 	
@@ -8,7 +9,7 @@ public class CasaSimples extends Casa{
 		tipo = TipoDeCasa.SIMPLES;
 	}
 	
-	public Jogador aplicarRegra(Jogador jogador) {
+	public Jogador aplicarRegra(Jogador jogador, List<Jogador> jogadores) {
 		if(!jogador.isBone() && !jogador.isMoletom() && !jogador.isOculosEscuros()) {
 			jogador.setMoedas(jogador.getMoedas() + 1);
 		}
