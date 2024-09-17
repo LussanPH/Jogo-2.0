@@ -1,5 +1,6 @@
 package casa;
 import jogadores.Jogador;
+import java.util.List;
 
 public class CasaReversa extends Casa{
 
@@ -10,8 +11,20 @@ public class CasaReversa extends Casa{
 	}
 
 	@Override
-	public Jogador aplicarRegra(Jogador jogador) {
-		//TABULEIRO: criem algo que verifique se o jogador ta nessa casa, e troque ele com o ultimo jogador do tabuleiro
+	public Jogador aplicarRegra(Jogador jogador, List<Jogador> jogadores) {
+		int menor = 40, aux = 0;
+		Jogador jMenor = null;
+		for(int i = 0; i<jogadores.size(); i++){
+			if(jogadores.get(i).casa < menor){
+				menor = jogadores.get(i).casa;
+				jMenor = jogadores.get(i);
+			}
+		}
+		if(jogador.casa != menor){
+			aux = jogador.casa;
+			jogador.casa = jMenor.casa;
+			jMenor.casa = aux;
+		}
 		return jogador;
 		
 	}
