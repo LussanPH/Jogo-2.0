@@ -1,5 +1,6 @@
 package casa;
 import jogadores.*;
+import java.util.List;
 
 public class CasaSorte extends Casa{
 
@@ -10,7 +11,7 @@ public class CasaSorte extends Casa{
 	}
 
 	@Override
-	public Jogador aplicarRegra(Jogador jogador) {
+	public Jogador aplicarRegra(Jogador jogador, List<Jogador> jogadores) {
 		if(!(jogador instanceof JogadorAzarado)) {
 			jogador.casa += 3;
 		}
