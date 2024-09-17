@@ -1,5 +1,7 @@
 package casa;
 import jogadores.*;
+import java.util.Scanner;
+import java.util.List;
 public class CasaJogaDeNovo extends Casa{
 
 	public CasaJogaDeNovo(int numero) {
@@ -9,8 +11,14 @@ public class CasaJogaDeNovo extends Casa{
 	}
 
 	@Override
-	public Jogador aplicarRegra(Jogador jogador) {
-		//TABULEIRO: no tabuleiro, peça pra ele verificar se a casa é JOGADENOVO, se sim, ele joga os dados e joga novamente.
+	public Jogador aplicarRegra(Jogador jogador, List<Jogador> jogadores) {
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Jogue novamente!, pressione enter");
+    	sc.nextLine();
+        jogador.JogarDados();
+        jogador.Andar();
+        System.out.println("Soma dos dados: " + jogador.somaDados());
 		return jogador;
 	}
 
