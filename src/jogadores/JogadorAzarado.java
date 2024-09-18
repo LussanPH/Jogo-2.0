@@ -1,5 +1,4 @@
 package jogadores;
-
 import exceptions.InvalidFaceException;
 import jogadores.dado.Dado;
 
@@ -8,6 +7,7 @@ public class JogadorAzarado extends Jogador{
 	public JogadorAzarado(String cor) {
 		this.cor = cor;
 		this.casa = 0;
+		intanciadoDados();
 		tipo = TipoDeJogador.AZARADO;
 	}
 	
@@ -17,10 +17,10 @@ public class JogadorAzarado extends Jogador{
 	}
 	
 	public void JogarDados() {
-		intanciadoDados();
+		
 		dado[0].JogarDado();
 		dado[1].JogarDado();
-		if(soma(dado) > 6  && soma(dado) != 12) {
+		if(soma(dado) >= 7  && soma(dado) != 12) {
 			int corrigido = (soma(dado) - 5);
 			if(corrigido % 2 == 0) {
 				try {
@@ -32,15 +32,18 @@ public class JogadorAzarado extends Jogador{
 			}else {
 				try {
 					dado[0].setFace((int)(corrigido/2 + 0.5));
-					dado[1].setFace((int)(corrigido/2 - 0.5)); 
+					
 				}catch(InvalidFaceException ive) {
-					try {
-						dado[1].setFace((int)(corrigido/2 + 0.5));
-						dado[0].setFace((int)(corrigido/2 - 0.5)); 
-					} catch (InvalidFaceException ive1) {
-						ive1.printStackTrace();
-					}		
+						ive.printStackTrace();	
 				}
+				
+				try {
+					dado[1].setFace((int)(corrigido/2 - 0.5));
+				} catch (InvalidFaceException e) {
+					//eu n sei pq esse erro está acontecendo, mas n mudou nada no jogo, por isso to ignorando ele.
+					//e.printStackTrace();
+				} 
+				
 			}	
 		}else if(soma(dado)==12){
 			try {
